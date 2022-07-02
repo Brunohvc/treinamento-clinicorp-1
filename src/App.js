@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import './App.css';
 import crud from './config/crud';
 
@@ -9,7 +9,7 @@ function App() {
   const [last, setLast] = useState('');
   const [listUsers, setListUsers] = useState([]);
 
-  const searchUser = () => {
+  const searchUser = useCallback(() => {
     const filters = [];
 
     const filterName = {
@@ -24,12 +24,11 @@ function App() {
       console.log(listUser);
       setListUsers(listUser);
     }).catch(console.error);
-  }
-  
+  }, [filterData])
+   
   useEffect(() => {
     searchUser();
-  }, [searchUser, filterData]);
-
+  }, [searchUser]);
 
   const addRegister = () => {
     crud.save("users", mountUser())
