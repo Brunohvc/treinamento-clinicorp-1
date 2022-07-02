@@ -11,7 +11,7 @@ function App() {
 
   useEffect(() => {
     searchUser();
-  }, [filterData]);
+  }, [searchUser, filterData]);
 
   const searchUser = () => {
     const filters = [];
