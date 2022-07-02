@@ -9,10 +9,6 @@ function App() {
   const [last, setLast] = useState('');
   const [listUsers, setListUsers] = useState([]);
 
-  useEffect(() => {
-    searchUser();
-  }, [searchUser, filterData]);
-
   const searchUser = () => {
     const filters = [];
 
@@ -29,6 +25,11 @@ function App() {
       setListUsers(listUser);
     }).catch(console.error);
   }
+  
+  useEffect(() => {
+    searchUser();
+  }, [searchUser, filterData]);
+
 
   const addRegister = () => {
     crud.save("users", mountUser())
